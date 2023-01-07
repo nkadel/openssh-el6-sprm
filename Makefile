@@ -11,9 +11,7 @@ RSYNCOPTS=-a --no-owner --no-group
 RSYNCSAFEOPTS=$(RSYNCOPTS) --ignore-existing 
 
 # "mock" configurations to build with, activate only as needed
-#MOCKS+=fedora-37-x86_64
-MOCKS+=centos-stream+epel-8-x86_64
-MOCKS+=centos+epel-7-x86_64
+MOCKS+=centos-6-x86_64
 
 REPOBASEDIR:=`/bin/pwd`/gitrepo
 
@@ -56,7 +54,7 @@ $(MOCKS)::
 	else \
 		echo "Actally building $? in $@"; \
 		rm -rf $@; \
-		mock -q -r /etc/mock/$@.cfg \
+		mock -q -r /etc/mock/eol/$@.cfg \
 		    --sources $(PWD) --spec $(SPEC) \
 		    --resultdir=$(PWD)/$@; \
 	fi

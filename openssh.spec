@@ -77,8 +77,8 @@ Version: %{openssh_ver}
 Release: %{openssh_rel}%{?dist}%{?rescue_rel}.1
 URL: http://www.openssh.com/portable.html
 #URL1: http://pamsshagentauth.sourceforge.net
-#Source0: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%{version}.tar.gz
-#Source1: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%{version}.tar.gz.asc
+#Source0: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%%{version}.tar.gz
+#Source1: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%%{version}.tar.gz.asc
 # This package differs from the upstream OpenSSH tarball in that
 # the ACSS cipher is removed by running openssh-nukeacss.sh in
 # the unpacked source directory.
@@ -428,7 +428,7 @@ fi
 %attr(0755,root,root) %{_bindir}/ssh
 %attr(0644,root,root) %{_bindir}/.ssh.hmac
 %attr(0644,root,root) %{_libdir}/.fipscheck.hmac
-#%attr(0644,root,root) %{_libdir}/fipscheck/ssh.hmac
+#%%attr(0644,root,root) %%{_libdir}/fipscheck/ssh.hmac
 %attr(0644,root,root) %{_mandir}/man1/ssh.1*
 %attr(0755,root,root) %{_bindir}/scp
 %attr(0644,root,root) %{_mandir}/man1/scp.1*
@@ -457,7 +457,7 @@ fi
 %dir %attr(0711,root,root) %{_var}/empty/sshd
 %attr(0755,root,root) %{_sbindir}/sshd
 %attr(0644,root,root) %{_sbindir}/.sshd.hmac
-#%attr(0644,root,root) %{_libdir}/fipscheck/sshd.hmac
+#%%attr(0644,root,root) %%{_libdir}/fipscheck/sshd.hmac
 %attr(0755,root,root) %{_libexecdir}/openssh/sftp-server
 %attr(0644,root,root) %{_mandir}/man5/sshd_config.5*
 %attr(0644,root,root) %{_mandir}/man5/moduli.5*
@@ -485,6 +485,9 @@ fi
 %endif
 
 %changelog
+* Sat Jan  7 2023 Nico Kadel-Garcia <nkadel@gmail.com>
+- Fix bugus dats in %%changelog
+
 * Wed Aug  3 2011 Jan F. Chadima <jchadima@redhat.com> - 5.6p2-34 + 0.9.2-29
 - Improve oom_adj (#727335)
 
@@ -501,7 +504,7 @@ fi
 - clean the data structures in the non privileged process
 - clean the data structures when roaming
 
-* Tue Feb  2 2011 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-28 + 0.9.2-29
+* Wed Feb  2 2011 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-28 + 0.9.2-29
 - clean the data structures in the privileged process
 
 * Tue Jan 25 2011 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-25 + 0.9.2-29
@@ -540,10 +543,10 @@ fi
 * Wed Nov  3 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-15 + 0.9.2-27
 - add auditing the kex result
 
-* Fri Nov  2 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-14 + 0.9.2-27
+* Tue Nov  2 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-14 + 0.9.2-27
 - add auditing the key ussage
 
-* Fri Oct 20 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-12 + 0.9.2-27
+* Wed Oct 20 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-12 + 0.9.2-27
 - update gsskex patch (#645389)
 
 * Wed Oct 20 2010 Jan F. Chadima <jchadima@redhat.com> - 5.6p1-11 + 0.9.2-27
@@ -585,7 +588,7 @@ fi
 * Wed Jun 30 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-17 + 0.9.2-26
 - improved the x11 patch according to upstream (#598671)
 
-* Thu Jun 25 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-16 + 0.9.2-26
+* Fri Jun 25 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-16 + 0.9.2-26
 - improved the x11 patch (#598671)
 
 * Thu Jun 24 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-15 + 0.9.2-26
@@ -627,7 +630,7 @@ fi
 - Tweak the ldap patch
 - Rename stderr patch properly
 
-* Wed Apr 29 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-4 + 0.9.2-26
+* Thu Apr 29 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-4 + 0.9.2-26
 - Added LDAP support
 
 * Mon Apr 26 2010 Jan F. Chadima <jchadima@redhat.com> - 5.5p1-3 + 0.9.2-26
@@ -910,10 +913,10 @@ fi
 * Mon Mar 19 2007 Tomas Mraz <tmraz@redhat.com> - 4.5p1-5
 - make profile.d/gnome-ssh-askpass.* regular files (#226218)
 
-* Thu Feb 27 2007 Tomas Mraz <tmraz@redhat.com> - 4.5p1-4
+* Tue Feb 27 2007 Tomas Mraz <tmraz@redhat.com> - 4.5p1-4
 - reject connection if requested mls range is not obtained (#229278)
 
-* Wed Feb 22 2007 Tomas Mraz <tmraz@redhat.com> - 4.5p1-3
+* Thu Feb 22 2007 Tomas Mraz <tmraz@redhat.com> - 4.5p1-3
 - improve Buildroot
 - remove duplicate /etc/ssh from files
 
@@ -1279,16 +1282,16 @@ fi
   complain if setgroups() fails if sshd has euid == 0
 - handle krb5 installed in %%{_prefix} or elsewhere by using krb5-config
 
-* Tue Jul 28 2003 Daniel Walsh <dwalsh@redhat.com> 3.6.1p2-5
+* Mon Jul 28 2003 Daniel Walsh <dwalsh@redhat.com> 3.6.1p2-5
 - Add SELinux patch
 
 * Tue Jul 22 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-4
 - rebuild
 
-* Wed Jun 16 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-3
+* Mon Jun 16 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-3
 - rebuild
 
-* Wed Jun 16 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-2
+* Mon  Jun 16 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-2
 - rebuild
 
 * Thu Jun  5 2003 Nalin Dahyabhai <nalin@redhat.com> 3.6.1p2-1
@@ -1412,7 +1415,7 @@ fi
 - remove dependency on db1-devel, which has just been swallowed up whole
   by gnome-libs-devel
 
-* Sun Dec 29 2001 Nalin Dahyabhai <nalin@redhat.com>
+* Sat Dec 29 2001 Nalin Dahyabhai <nalin@redhat.com>
 - adjust build dependencies so that build6x actually works right (fix
   from Hugo van der Kooij)
 
